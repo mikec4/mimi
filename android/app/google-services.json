@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "208013680796",
+    "firebase_url": "https://mimi-1d9b6.firebaseio.com",
+    "project_id": "mimi-1d9b6",
+    "storage_bucket": "mimi-1d9b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208013680796:android:a7ed946ae9345246",
+        "android_client_info": {
+          "package_name": "com.ntiriniga.mimi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208013680796-82ovrmngie2bs6ivif2i0sf4g7oefvho.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ntiriniga.mimi",
+            "certificate_hash": "0475b0c6eb92b5f7b8d0935392be922d182554f3"
+          }
+        },
+        {
+          "client_id": "208013680796-ej6er337bafhphou5f1e5mf8o8fgulvn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvEBLBTk2GRUZPTQRK-484ROIlbvFPIiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "208013680796-ej6er337bafhphou5f1e5mf8o8fgulvn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
