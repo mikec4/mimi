@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 import 'package:mimi/bus/bloc/bloc.dart';
 import 'package:mimi/bus/busProvider/bus_controller.dart';
 import 'package:mimi/global/route_title.dart';
@@ -107,7 +108,7 @@ class PaymentDetails extends StatelessWidget {
 
   Widget _smallBox(){
     return SizedBox(
-      height: SizeConfig.blockVerticalSize * 0.05,  
+      height: SizeConfig.blockVerticalSize * 0.5,  
     );
   }
 }
@@ -125,7 +126,7 @@ class CustomRow extends StatelessWidget {
                   'Total Fare  (${controller.seats.length} tickets)',),
                 Spacer(),
                 Text(
-                  'Tsh  ${_calculateTax(seats: controller.seats.length, fare: controller.fare)}',
+                  '${_calculateTax(seats: controller.seats.length, fare: controller.fare)}',
                   ),
 
               ],
@@ -135,12 +136,19 @@ class CustomRow extends StatelessWidget {
     );
   }
 
-  double _calculateTax({double fare,int seats}){
+  String _calculateTax({double fare,int seats}){
     var _fare = (fare * seats);
     var _tax = (fare * seats) * 0.18;
     var _remainder = _fare - _tax;
-
-    return _remainder;
+    
+    var formatter = FlutterMoneyFormatter(
+      amount: _remainder,
+      settings: MoneyFormatterSettings(
+        symbol: 'Tsh',
+        thousandSeparator: ','
+      )
+    );
+    return formatter.output.symbolOnLeft;
 
   }
 
@@ -151,12 +159,15 @@ class FareTax extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<BusController>(
       builder: (context,controller,_){
+
+        
         return Container(
           child: Row(
             children: <Widget>[
-              Text('Tax payable  (VAT)'),
+              Text('VAT (18%)'),
               Spacer(),
-              Text('Tsh  ${_taxFare(seats: controller.seats.length, fare: controller.fare)}')
+              Text('${_taxFare(seats: controller.seats.length,fare: controller.fare)}')
+              //Text('Tsh  ${_taxFare(seats: controller.seats.length, fare: controller.fare)}')
             ],
           ),
         );
@@ -164,8 +175,19 @@ class FareTax extends StatelessWidget {
     );
   }
 
-  double _taxFare({double fare, int seats}){
-    return (fare * seats) * 0.18;
+  String _taxFare({double fare, int seats}){
+
+    var product = (fare * seats) * 0.18;
+
+    var flutterAmount = FlutterMoneyFormatter(
+          amount: product,
+          settings: MoneyFormatterSettings(
+            symbol: 'Tsh',
+            thousandSeparator: ','
+          )
+        );
+
+    return flutterAmount.output.symbolOnLeft;
   }
 }
 
@@ -180,12 +202,24 @@ class InsuredWidget extends StatelessWidget {
             children: <Widget>[
               Text(controller.insured ? 'Insured (Yes)' : 'Insured  (No)') ,
               Spacer(),
-              Text(controller.insured ? 'Tsh  ${controller.insurance}' : 'Tsh  0.0') 
+              Text(controller.insured ? '${_moneyFormatter(insurance: controller.insurance * controller.seats.length)}' : '${_moneyFormatter(insurance: 0.0)}') 
             ],
           ),
         );
       },
     );
+  }
+
+  String _moneyFormatter({double insurance}){
+    var formatter = FlutterMoneyFormatter(
+      amount: insurance,
+      settings: MoneyFormatterSettings(
+        symbol: 'Tsh',
+        thousandSeparator: ','
+      )
+    );
+
+    return formatter.output.symbolOnLeft;
   }
 }
 
@@ -195,12 +229,24 @@ class CouponCode extends StatelessWidget {
     return Container(
       child: Row(
         children: <Widget>[
-          Text('Promo coupon'),
+          Text('Coupon'),
           Spacer(),
-          Text('Tsh  0.0')
+          Text('${_moneyFormatter(amount: 0.0)}')
         ],
       ),
     );
+  }
+
+  String _moneyFormatter({double amount}){
+    var _formatter = FlutterMoneyFormatter(
+      amount: amount,
+      settings: MoneyFormatterSettings(
+        symbol: 'Tsh',
+        thousandSeparator: ','
+      )
+    );
+
+    return _formatter.output.symbolOnLeft;
   }
 }
 
@@ -213,14 +259,26 @@ class TotalFare extends StatelessWidget {
         return Container(
           child: Row(
             children: <Widget>[
-              Text('Total Amount'),
+              Text('Total Amount',style: TextStyle(fontWeight: FontWeight.bold),),
               Spacer(),
-              Text('Tsh  ${controller.fare * controller.seats.length}')
+              Text('${_moneyFormatter(fare : controller.fare * controller.seats.length)}',style: TextStyle(fontWeight: FontWeight.bold),)
             ],
           ),
         );
       },
     );
+  }
+
+  String _moneyFormatter({double fare}){
+    var formatter = FlutterMoneyFormatter(
+      amount: fare,
+      settings: MoneyFormatterSettings(
+        symbol: 'Tsh',
+        thousandSeparator: ','
+      )
+    );
+
+    return formatter.output.symbolOnLeft;
   }
 }
 
@@ -255,7 +313,7 @@ class BusInformationCard extends StatelessWidget {
           // width: MediaQuery.of(context).size.width * 0.97,
           // height: MediaQuery.of(context).size.height * 0.2,
           width: SizeConfig.blockHorizontalSize * 110,
-          height: SizeConfig.blockVerticalSize * 14.0, 
+          height: SizeConfig.blockVerticalSize * 15.5,   
            
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -298,9 +356,9 @@ class BusInformationCard extends StatelessWidget {
 
   Widget _smallBox(){
     return SizedBox(
-      height: SizeConfig.blockVerticalSize * 0.05,  
+      height: SizeConfig.blockVerticalSize * 0.5,  
     );
-  }
+  }  
 
 }
 

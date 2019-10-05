@@ -48,6 +48,7 @@ dependencies:
   badges: ^1.1.0
   date_picker_timeline: ^1.0.0
   queries: ^0.1.12
+  flutter_money_formatter: ^0.8.3
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

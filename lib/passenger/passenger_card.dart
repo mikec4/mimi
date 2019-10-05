@@ -21,7 +21,6 @@ class _PassengerCardState extends State<PassengerCard> with AutomaticKeepAliveCl
   String _value = 'Female';
   
   Passenger _passengerModel;
-  //PModel _pModel;
 
   PassengerController _passengerController;
 
@@ -100,7 +99,8 @@ class _PassengerCardState extends State<PassengerCard> with AutomaticKeepAliveCl
           // focusNode: _nameFocus,
            onFieldSubmitted: _onNameSubmit,
            validator:_onNameValidator,
-
+           onSaved: (value){
+           },
            keyboardType: TextInputType.text,
            textCapitalization: TextCapitalization.words,
            textInputAction: TextInputAction.next,
@@ -119,12 +119,10 @@ class _PassengerCardState extends State<PassengerCard> with AutomaticKeepAliveCl
 
   void _onNameSubmit(String value) async{
     //FocusScope.of(context).requestFocus(_mobileFocus);
-    if(formKey.currentState.validate()){}
-     focusScope.nextFocus();
+    focusScope.nextFocus();
    _passengerModel.setName = value;
    _passengerModel.setSeatNumber = widget.seatNumber;
-  //  _pModel.seatNumber = widget.seatNumber;
-  //  _pModel.name = value;
+    if(formKey.currentState.validate()){}
 
   }
 
@@ -136,10 +134,6 @@ class _PassengerCardState extends State<PassengerCard> with AutomaticKeepAliveCl
       });
 
       return 'Name is required';
-    }
-    else {
-      _passengerModel.setName = value;
-      _passengerModel.setSeatNumber = widget.seatNumber;
     }
   }
 
@@ -155,6 +149,7 @@ class _PassengerCardState extends State<PassengerCard> with AutomaticKeepAliveCl
            onFieldSubmitted: _onMobileSubmit,
            textInputAction: TextInputAction.next,
            validator: _onMobileValidator,
+           onChanged: (value){},
            decoration: InputDecoration(
              labelText: 'Mobile',
              //contentPadding: EdgeInsets.only(top: 1.0)
@@ -169,7 +164,8 @@ class _PassengerCardState extends State<PassengerCard> with AutomaticKeepAliveCl
   }
 
   void _onMobileSubmit(String value) async{
-    focusScope.nextFocus();
+
+     focusScope.nextFocus();
     _passengerModel.setMobile = value;
     _passengerController.addPassenger(_passengerModel);
     if(formKey.currentState.validate()){}
@@ -186,11 +182,8 @@ class _PassengerCardState extends State<PassengerCard> with AutomaticKeepAliveCl
       });
 
       return 'Mobile number should have 10 digits';
-
-    }else {
-      _passengerModel.setMobile = value;
-      _passengerController.addPassenger(_passengerModel);
     }
+    
             
   }
 

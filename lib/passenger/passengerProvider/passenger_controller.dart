@@ -13,9 +13,9 @@ class PassengerController with ChangeNotifier{
   }
   
   void addPassenger(Passenger passenger){
-     if(_passengers.contains(passenger)){
-       _passengers.remove(passenger);
-     }
+    //  if(_passengers.contains(passenger)){
+    //    _passengers.remove(passenger);
+    //  }
     _passengers.add(passenger);
     notifyListeners();
   }
