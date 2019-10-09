@@ -2,6 +2,12 @@ import 'package:flutter/foundation.dart';
 
 class BusController with ChangeNotifier{
   
+  String _busId = '';
+  String get busId => this._busId;
+  set setBusId(String id){
+    this._busId = id;
+    notifyListeners();
+  }
   //Add seats
   List<String> _seats = [];
 

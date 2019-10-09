@@ -12,12 +12,13 @@ class SearchRepository {
   }
 
   Future<List<DocumentSnapshot>> getByQuery(Map<String,dynamic> route,DateTime dateTime) async{
-    
     QuerySnapshot querySnapshot = await Firestore.instance.collection('Bus')
                                    .where('Route',isEqualTo: route)
-                                   .where('Date',isEqualTo: dateTime)
+                                   .where('DepartureDate',isEqualTo: dateTime)
                                    .getDocuments();
     
     return querySnapshot.documents;
   }
+
+
 }

@@ -2,8 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mimi/board_drop_location/board/board_location.dart';
 import 'package:mimi/board_drop_location/drop/drop_location.dart';
+import 'package:mimi/bus/busProvider/bus_controller.dart';
 import 'package:mimi/global/route_title.dart';
 import 'package:mimi/utils/size_config.dart';
+import 'package:provider/provider.dart';
 
 class BoardDropLocation extends StatefulWidget {
   @override
@@ -53,6 +55,16 @@ class _BoardDropLocationState extends State<BoardDropLocation> with SingleTicker
                 indicatorPadding: EdgeInsets.only(left: 5.0,right: 5.0),
                controller: _tabController,
                 tabs: _tabs.map((tab) => Tab(text: tab,)).toList(),
+                onTap: (i){
+                //  if(i == 0){
+                //     BlocProvider.of<LocationsBloc>(context).dispatch(BoardingLocationsEvent(busId: _busController.busId));         
+                //  }
+                //  if(i == 1){
+
+                // BlocProvider.of<LocationsBloc>(context).dispatch(DropingLocationsEvent(busId: _busController.busId));
+
+                //  }
+                },
               ),
               ConstrainedBox(
                 constraints: constrains,
@@ -61,8 +73,8 @@ class _BoardDropLocationState extends State<BoardDropLocation> with SingleTicker
                   child: TabBarView(
                   controller: _tabController,
                   children: <Widget>[
-                    BoardLocation(),
-                    DropLocation()
+                    MainBoardLocation(),
+                    MainDropLocation()
                   ],
               ),
                 ),

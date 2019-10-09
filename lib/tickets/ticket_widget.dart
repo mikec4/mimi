@@ -77,7 +77,7 @@ class CardContainer extends StatelessWidget {
                 _largeBox(),
                 TextHeader(firstText: 'Departure', secondText: 'Arrive',),
                 _smallBox(),
-                TextBody(firstText: dateFormat.format(selectedBus.date.toDate()) ?? '', secondText: dateFormat.format(selectedBus.date.toDate()) ?? '',),
+                TextBody(firstText: dateFormat.format(selectedBus.departureDate.toDate()) ?? '', secondText: dateFormat.format(selectedBus.arrivalDate.toDate()) ?? '',),
                 _smallBox(),
                 Row(
                   children: <Widget>[
@@ -86,7 +86,7 @@ class CardContainer extends StatelessWidget {
                     //fontSize: SizeConfig.blockVerticalSize * 1.8,
                     color: Colors.grey)),
                     Spacer(),
-                    Text(selectedBus.departureTime ?? '',
+                    Text(selectedBus.arriveTime  ?? '',
                     style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold,
                    // fontSize: SizeConfig.blockVerticalSize * 1.8
                     ))

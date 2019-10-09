@@ -1,18 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mimi/board_drop_location/board/bloc/boardingpoints_bloc.dart';
+import 'package:mimi/board_drop_location/board/bloc/boardingpoints_state.dart';
 import 'package:mimi/board_drop_location/board/board_radio_button.dart';
 
-class BoardLocation extends StatelessWidget {
-  final TabController tabController;
+class MainBoardLocation extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<BoardingpointsBloc,BoardingpointsState>(
+      builder: (_,state){
+        if(state is LoadingBoardingpointsState){
+          return Container(
+            alignment: Alignment.center,
+            color: Colors.white,
+            child: CircularProgressIndicator(),
+          );
+        }
 
-  BoardLocation({this.tabController});
+        if(state is ErrorBoardingPointsState){
+          return Material(
+            child: Center(
+              child: Text('${state.error}'),
+            ),
+          );
+        }
+        if(state is FetchAllBoardingPointsState){
+          return BoardLocationPage(locations: state.boardingPoints);
+        }
+      },
+    );
+  }
+}
+
+class BoardLocationPage extends StatelessWidget {
+  final TabController tabController;
+  final List<dynamic> locations;
+
+  BoardLocationPage({this.tabController,this.locations});
   
-  final List<String> _boarding =[
-    'Ubungo Bus stand',
-    'Kimara Stop Over',
-    'Mbezi Bus stand',
-    'Kibaha Stand',
-    'Chalinze Bus Stand'
-  ];
+  // final List<String> _boarding =[
+  //   'Ubungo Bus stand',
+  //   'Kimara Stop Over',
+  //   'Mbezi Bus stand',
+  //   'Kibaha Stand',
+  //   'Chalinze Bus Stand'
+  // ];
 
 
 
@@ -21,7 +53,7 @@ class BoardLocation extends StatelessWidget {
     return Container(
       child: ListView.separated(
         separatorBuilder: (context,i) => Container(height: 0.5,color: Colors.black,),
-        itemCount: _boarding.length,
+        itemCount: locations.length,
         itemBuilder: (context,i) =>
          Column(
            children: <Widget>[
@@ -40,8 +72,8 @@ class BoardLocation extends StatelessWidget {
 
     children: <Widget>[
       BoardRadioButton(
-      radioValue: _boarding[index],),
-      Text(_boarding[index]),
+      radioValue: locations[index],),
+      Text(locations[index]),
     
     ],
   );

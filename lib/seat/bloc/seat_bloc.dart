@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:mimi/searchResult/bloc/bloc.dart';
 import 'package:mimi/seat/model/seatList.dart';
 import 'package:mimi/seat/repository/seat_repository.dart';
 import './bloc.dart';

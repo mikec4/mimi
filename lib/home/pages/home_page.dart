@@ -30,10 +30,10 @@ class _TeaserState extends State<HomePage> {
  ];
 
  List<String> _destination = [
-   'Dar es salaam','Mwanza','Kahama','Kigoma','Iringa'
+   'Dar es salaam','Mwanza','Kahama','Kigoma','Iringa','Musoma'
  ];
 
- List<String> _duration = ['Morning', 'Noon'];
+ //List<String> _duration = ['Morning', 'Noon'];
 
 
  HomeProvider _homeProvider;
@@ -176,6 +176,8 @@ class _TeaserState extends State<HomePage> {
       "From": _orignalLocation,
       "To": _destinationLocation
     };
+
+    //Map<String,dynamic> date = {"DepartureDate" : _dateTime};
 
     _searchBloc.dispatch(SearchByName(dateTime: _dateTime,route: route));
 

@@ -45,6 +45,13 @@ class GetSelectedSeatBusState extends BusState{
   }
 }
 
+class BusAmenitiesBusState extends BusState{
+
+  final List<String> titles;
+  BusAmenitiesBusState({this.titles}) : super([titles]);
+  
+}
+
 class ErrorBusState extends BusState{
 
   final String message;

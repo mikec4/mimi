@@ -31,3 +31,8 @@ class SelectSeatBusEvent extends BusEvent{
     return 'Select seat bus event';
   }
 }
+
+class BusAmenitiesBusEvent extends BusEvent{
+  final String busId;
+  BusAmenitiesBusEvent({this.busId}) : super([]);
+}

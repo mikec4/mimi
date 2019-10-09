@@ -40,7 +40,10 @@ class BusBloc extends Bloc<BusEvent, BusState> {
 
       }
     }
+   
   }
+
+ 
 
 
   /* Select Seat here  */

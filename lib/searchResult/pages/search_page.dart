@@ -1,7 +1,9 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' as prefix0;
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:mimi/amenities/bloc/bloc.dart';
 import 'package:mimi/bus/bloc/bloc.dart';
 import 'package:mimi/bus/bloc/bus_bloc.dart';
 import 'package:mimi/bus/busProvider/bus_controller.dart';
@@ -9,6 +11,8 @@ import 'package:mimi/bus/pages/bus_page.dart';
 import 'package:mimi/filter/filter_page.dart';
 import 'package:mimi/global/route_title.dart';
 import 'package:mimi/home/homeProvider/home_provider.dart';
+import 'package:mimi/policy/bloc/bloc.dart';
+import 'package:mimi/policy/bloc/policies_bloc.dart';
 import 'package:mimi/searchResult/bloc/bloc.dart';
 import 'package:mimi/searchResult/filter/filterProvider/filter_controller.dart';
 import 'package:mimi/searchResult/pages/filter_model.dart';
@@ -174,12 +178,17 @@ class SearchPageFilter extends StatelessWidget {
 }
 
 
-class CustomCardList extends StatelessWidget {
+class CustomCardList extends StatefulWidget {
 
   final List<SearchBus> buses;
 
   const CustomCardList({Key key, this.buses,}) : super(key: key);
 
+  @override
+  _CustomCardListState createState() => _CustomCardListState();
+}
+
+class _CustomCardListState extends State<CustomCardList> {
   @override
   Widget build(BuildContext context) {
 
@@ -189,7 +198,7 @@ class CustomCardList extends StatelessWidget {
          // padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 5.0),
          padding: EdgeInsets.symmetric(
            vertical: SizeConfig.blockVerticalSize * 2.0,horizontal: SizeConfig.blockHorizontalSize * 1.2),
-          itemCount: buses.length,
+          itemCount: widget.buses.length,
          // itemExtent: 124.0,
          itemExtent: SizeConfig.blockVerticalSize * 16.0,
           itemBuilder: (_,i){
@@ -202,17 +211,20 @@ class CustomCardList extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => BusPage()));
 
                   Provider.of<BusController>(context).resetSeats();
-                
-                  BlocProvider.of<BusBloc>(context).dispatch(CreateBusEvent(selectedBus: buses[i]));
-
-                  BlocProvider.of<SeatBloc>(context).dispatch(FetchAllSeatEvent(busId: buses[i].id));
+                  Provider.of<BusController>(context).setBusId = widget.buses[i].id;
+                  
+                  BlocProvider.of<BusBloc>(context).dispatch(CreateBusEvent(selectedBus: widget.buses[i]));
+                  BlocProvider.of<AmenitiesBloc>(context).dispatch(FetchAllAmenitiesEvent(busId: widget.buses[i].id));
+                  BlocProvider.of<PoliciesBloc>(context).dispatch(FetchAllPoliciesEvent(busId: widget.buses[i].id));
+                  BlocProvider.of<SeatBloc>(context).dispatch(FetchAllSeatEvent(busId: widget.buses[i].id));
 
                 },
                 child: CustomBusCard(
-                  busName: buses[i].name,
-                  fare: buses[i].fare,
-                  departureTime: buses[i].departureTime,
-                  arriveTime: buses[i].arriveTime,
+                  busName: widget.buses[i].name,
+                  fare: widget.buses[i].fare,
+                  busType: widget.buses[i].busType,
+                  departureTime: widget.buses[i].departureTime,
+                  arriveTime: widget.buses[i].arriveTime,
                 ),
               ),
             );
@@ -221,9 +233,6 @@ class CustomCardList extends StatelessWidget {
       ),
     );
   }
-
- 
-
 }
 
 

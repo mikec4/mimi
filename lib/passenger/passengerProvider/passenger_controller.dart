@@ -20,6 +20,11 @@ class PassengerController with ChangeNotifier{
     notifyListeners();
   }
 
+  void removePassenger(int i){
+    this._passengers.removeAt(i);
+    notifyListeners();
+  }
+
   
   
 }

@@ -19,7 +19,7 @@ class PanelPage2 extends StatelessWidget {
   Widget _buildMain(BuildContext context){
     return Container(
       alignment: Alignment.topCenter,
-      child: Row(
+    child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           SizedBox(width: 1.0,),

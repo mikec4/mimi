@@ -10,7 +10,6 @@ import 'package:mimi/utils/size_config.dart';
 import 'package:mimi/utils/theme.dart';
 import 'package:provider/provider.dart';
 
-import '../custom_observer.dart';
 import '../providers.dart';
 import 'bloc_providers.dart';
 
@@ -29,7 +28,7 @@ class MainApp extends StatelessWidget {
             child: MultiProvider(
               providers: providers,
                 child: MaterialApp(
-                navigatorObservers: [CustomRouteObserver()],
+                //navigatorObservers: [CustomRouteObserver()],
                 debugShowCheckedModeBanner: false,
                 theme: themeData,
                 home: HomeAuth()

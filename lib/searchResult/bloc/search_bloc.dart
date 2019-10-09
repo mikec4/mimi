@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:mimi/searchResult/searchModel/search_bus_list.dart';
 import 'package:mimi/searchResult/searchRepository/search_repository.dart';
-import 'package:rxdart/rxdart.dart';
 import './bloc.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {

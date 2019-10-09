@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mimi/utils/size_config.dart';
 
 class CustomBusCard extends StatelessWidget {
   final String busName;
   final String fare ;
+  final String busType;
   final String departureTime;
   final String arriveTime;
 
-  const CustomBusCard({Key key, this.busName, this.fare,this.departureTime,this.arriveTime}) : super(key: key);
+  const CustomBusCard({
+    Key key, 
+    this.busName, 
+    this.fare,
+    this.busType,
+    this.departureTime,
+    this.arriveTime}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
      return Card(
        //shape: RoundedRectangleBorder(),
-       elevation: 10.0,
+       elevation: 2.0,
        child: Container(
          //padding: EdgeInsets.all(15.0),
          padding: EdgeInsets.all(SizeConfig.blockVerticalSize * 2.03),
@@ -66,7 +74,7 @@ class CustomBusCard extends StatelessWidget {
                      ),
                  Spacer(),
                  Text(
-                   'Tsh ${double.parse(fare)}',
+                   '${_formatter(double.parse(fare))}',
                    style: TextStyle(
                      fontWeight: FontWeight.w600,
                      //fontSize: 18.0,
@@ -79,7 +87,7 @@ class CustomBusCard extends StatelessWidget {
               Row(
                children: <Widget>[
                  Text(
-                   'Zhotong Luxury Coach (2+2)',
+                   '$busType'??'Zhotong Luxury Coach (2+2)',
                    style: TextStyle(
                      fontWeight: FontWeight.normal,
                     // fontSize: 14.5,
@@ -98,5 +106,15 @@ class CustomBusCard extends StatelessWidget {
     return SizedBox(
       height: SizeConfig.blockVerticalSize * 0.68,
     );
+  }
+
+  String _formatter(double fare){
+    return FlutterMoneyFormatter(
+      amount: fare,
+      settings: MoneyFormatterSettings(
+        symbol: 'Tsh',
+        thousandSeparator: ','
+      )
+    ).output.symbolOnLeft;
   }
 }

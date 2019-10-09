@@ -27,26 +27,26 @@ class CustomDropDownMenu extends StatelessWidget {
             child: DropdownButtonFormField(
             
               value: label.contains('From') ?  _homeProvider.originalLocation : _homeProvider.destination,
-              onSaved: (value) async{
+              onSaved: (String value) async{
 
                 if(label.contains('From')){
 
-                _homeProvider.setOriginalLocation(value);
+                _homeProvider.setOriginalLocation(value.trim());
 
                 }
                 if(label.contains('Destination')){
-                  _homeProvider.setDestination(value);
+                  _homeProvider.setDestination(value.trim());
                 }
               },
 
-              onChanged: (value) async{
+              onChanged: (String value) async{
                 if(label.contains('From')){
 
-                _homeProvider.setOriginalLocation(value);
+                _homeProvider.setOriginalLocation(value.trim());
 
                 }
                 if(label.contains('Destination')){
-                  _homeProvider.setDestination(value);
+                  _homeProvider.setDestination(value.trim());
                 }
               },
              

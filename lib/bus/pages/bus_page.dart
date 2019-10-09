@@ -24,6 +24,7 @@ class BusPage extends StatelessWidget {
 
         if(state is GetSelectedBusState){
           return BusSeatBody(currentBus: state.selectedBus,);
+          
         }
       },
     );
@@ -92,10 +93,10 @@ class SelectedBusHeader extends StatelessWidget {
 
     return SliverAppBar(
       title: Row(children: <Widget>[
-                Text(currentBus.name ??'Dar Lux' ),
+                Text(currentBus.name ??'Dar Lux' ,style: TextStyle(fontSize: 15.0),),
                 Spacer(),
-                Text('T123 ABC',style: Theme.of(context).textTheme.subtitle,),
-
+                Text(currentBus.registrationNumber ??'T123 ABC',
+                style: TextStyle(fontSize: 13.0),),
               ],),
              // expandedHeight: 130.0,
               expandedHeight: SizeConfig.blockVerticalSize * 18.3,
@@ -110,7 +111,7 @@ class SelectedBusHeader extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         Spacer(),
-                        Text('${dateFormat.format(currentBus.date.toDate())}' ??'Not available',style: TextStyle(color: Colors.white),),
+                        Text('${dateFormat.format(currentBus.departureDate.toDate())}' ??'Not available',style: TextStyle(color: Colors.white),),
                         SizedBox(width: SizeConfig.blockHorizontalSize * 2.8,)
                       ],
                     ),

@@ -6,11 +6,15 @@ class SearchBus extends Equatable {
   String id;
   String name;
   String fare;
+  String registrationNumber;
+  String busType;
   String departureTime;
   String arriveTime;
   String reportTime;
   Map<dynamic,dynamic> route;
-  Timestamp date;
+ // Timestamp date;
+  Timestamp arrivalDate;
+  Timestamp departureDate;
 
   
   SearchBus({
@@ -18,11 +22,27 @@ class SearchBus extends Equatable {
     this.id,
     this.fare,
     this.route,
-    this.date,
+   // this.date,
+    this.registrationNumber,
+    this.busType,
     this.arriveTime,
     this.departureTime,
-    this.reportTime
-    }) : super([name,id,fare,route,date,arriveTime,departureTime,reportTime]);
+    this.reportTime,
+    this.departureDate,
+    this.arrivalDate
+    }) : super([
+      name,
+      id,
+      fare,
+      busType,
+      route,
+      registrationNumber,
+      arriveTime,
+      departureTime,
+      reportTime,
+      departureDate,
+      arrivalDate
+      ]);
 
   static SearchBus fromJson(Map<String,dynamic> json){
     return SearchBus(
@@ -38,13 +58,29 @@ class SearchBus extends Equatable {
       name: snapshot.data['Name'],
       id: snapshot.documentID,
       fare: snapshot.data['Fare'],
+      registrationNumber: snapshot.data['RegistrationNumber'],
+      busType: snapshot.data['BusType'],
       route: snapshot.data['Route'],
-      date: snapshot.data['Date'],
-      reportTime: snapshot.data['Time'][0]['ReportTime'],
-      departureTime: snapshot.data['Time'][1]['DepartureTime'],
-      arriveTime: snapshot.data['Time'][2]['ArrivalTime'],
+      departureDate: snapshot.data['DepartureDate'],
+      arrivalDate: snapshot.data['ArrivalDate'],
+      reportTime: snapshot.data['Time']['ReportTime'],
+      departureTime: snapshot.data['Time']['DepartureTime'],
+      arriveTime: snapshot.data['Time']['ArrivalTime'],
     );
   }
+
+  // static SearchBus fromSnapshot(DocumentSnapshot snapshot){
+  //   return SearchBus(
+  //     name: snapshot.data['Name'],
+  //     id: snapshot.documentID,
+  //     fare: snapshot.data['Fare'],
+  //     route: snapshot.data['Route'],
+  //     date: snapshot.data['Date'],
+  //     reportTime: snapshot.data['Time'][0]['ReportTime'],
+  //     departureTime: snapshot.data['Time'][1]['DepartureTime'],
+  //     arriveTime: snapshot.data['Time'][2]['ArrivalTime'],
+  //   );
+  // }
 
 
 }
