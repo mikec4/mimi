@@ -20,33 +20,21 @@ dependencies:
   flutter:
     sdk: flutter
   datetime_picker_formfield: ^0.4.3
-  hidden_drawer_menu: ^1.1.1
   circular_profile_avatar: ^0.2.0
-  progress_button: ^0.0.2
-  flutter_progress_button: ^1.0.0
-  date_picker_persian: ^0.1.2
   dropdownfield: ^1.0.1
   dropdown_formfield: ^0.1.0
   material_design_icons_flutter: ^3.2.4096
-  titled_navigation_bar: ^3.6.0
-  card_selector: ^0.1.0
-  flutter_swiper: ^1.1.6
-  barcode_flutter: ^1.0.1
   meta:
-  #flutter_bloc: ^0.21.0 
   flutter_bloc: ^1.0.0
   bottom_navy_bar: ^5.2.0
   flutter_auth_buttons: ^0.5.0
   dartz: ^0.8.7
-  pin_code_fields: ^1.1.2
-  pinput: ^0.1.10
  
   cloud_firestore: ^0.12.9+4
   firebase_core: ^0.4.0+9
   firebase_auth: ^0.14.0+5
   firebase_messaging: ^5.1.5
   flutter_facebook_login: ^2.0.1
-  badges: ^1.1.0
   date_picker_timeline: ^1.0.0
   queries: ^0.1.12
   flutter_money_formatter: ^0.8.3
@@ -54,36 +42,14 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
- # pin_code_text_field: ^1.2.1
- # pin_view: ^1.0.1
   font_awesome_flutter:
-  #country_pickers: ^1.0.2
-  #country_code_picker: ^1.1.5
-  #flutter_spinkit: ^3.1.0
-  #shared_preferences: ^0.5.1+2
- # flutter_typeahead: ^1.4.0
   sliding_up_panel: ^0.3.4
-  circular_bottom_navigation: ^0.9.1
-  flutter_pagewise:
-  fancy_bottom_navigation: ^0.3.2
-  scoped_model: ^1.0.1
-  #stripe_payment: ^0.1.0
   equatable:
   bloc:
-  #giffy_dialog:
   provider:
- # progress_hud:
   rxdart:
   device_preview: ^0.1.9-beta
-  #toast:
   get_it:
-  #flare_flutter:
-  #smart_flare:
-  #modal_progress_hud:
- # liquid_pull_to_refresh: 
-  flushbar:
- # sms_autofill: ^1.1.0 
-  #Fpin_input_text_field:
   google_sign_in:
 
     

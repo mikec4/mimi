@@ -8,20 +8,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.0"
-  badges:
-    dependency: "direct main"
-    description:
-      name: badges
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.0"
-  barcode_flutter:
-    dependency: "direct main"
-    description:
-      name: barcode_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
   bloc:
     dependency: "direct main"
     description:
@@ -57,13 +43,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.8.0"
-  card_selector:
-    dependency: "direct main"
-    description:
-      name: card_selector
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.0"
   charcode:
     dependency: transitive
     description:
@@ -71,13 +50,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.2"
-  circular_bottom_navigation:
-    dependency: "direct main"
-    description:
-      name: circular_bottom_navigation
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.1"
   circular_profile_avatar:
     dependency: "direct main"
     description:
@@ -127,13 +99,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.8.7"
-  date_picker_persian:
-    dependency: "direct main"
-    description:
-      name: date_picker_persian
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.2"
   date_picker_timeline:
     dependency: "direct main"
     description:
@@ -176,13 +141,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.6"
-  fancy_bottom_navigation:
-    dependency: "direct main"
-    description:
-      name: fancy_bottom_navigation
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.2"
   firebase_auth:
     dependency: "direct main"
     description:
@@ -204,13 +162,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.1.5"
-  flushbar:
-    dependency: "direct main"
-    description:
-      name: flushbar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.8.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -251,34 +202,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.8.3"
-  flutter_page_indicator:
-    dependency: transitive
-    description:
-      name: flutter_page_indicator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.3"
-  flutter_pagewise:
-    dependency: "direct main"
-    description:
-      name: flutter_pagewise
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.3"
-  flutter_progress_button:
-    dependency: "direct main"
-    description:
-      name: flutter_progress_button
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
-  flutter_swiper:
-    dependency: "direct main"
-    description:
-      name: flutter_swiper
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.6"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -312,13 +235,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.6"
-  hidden_drawer_menu:
-    dependency: "direct main"
-    description:
-      name: hidden_drawer_menu
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.1"
   http:
     dependency: transitive
     description:
@@ -389,20 +305,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0+1"
-  pin_code_fields:
-    dependency: "direct main"
-    description:
-      name: pin_code_fields
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.2"
-  pinput:
-    dependency: "direct main"
-    description:
-      name: pinput
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.10"
   platform:
     dependency: transitive
     description:
@@ -410,13 +312,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.1"
-  progress_button:
-    dependency: "direct main"
-    description:
-      name: progress_button
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.2"
   provider:
     dependency: "direct main"
     description:
@@ -445,13 +340,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.22.0"
-  scoped_model:
-    dependency: "direct main"
-    description:
-      name: scoped_model
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -520,20 +408,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.5"
-  titled_navigation_bar:
-    dependency: "direct main"
-    description:
-      name: titled_navigation_bar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.6.0"
-  transformer_page_view:
-    dependency: transitive
-    description:
-      name: transformer_page_view
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.6"
   typed_data:
     dependency: transitive
     description:

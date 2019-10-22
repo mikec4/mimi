@@ -6,9 +6,6 @@ import 'package:mimi/login/bloc/login_bloc.dart';
 import 'package:mimi/login/bloc/login_event.dart';
 import 'package:mimi/login/pages/facebook_login_page.dart';
 import 'package:mimi/login/pages/google_login_page.dart';
-import 'package:mimi/login/pages/mobile_login_page.dart';
-import 'package:mimi/login/provider/user_provider.dart';
-import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget{
 
