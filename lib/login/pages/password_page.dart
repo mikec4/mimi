@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mimi/land/main_home_page.dart';
 import 'package:mimi/login/bloc/bloc.dart';
 import 'package:mimi/login/bloc/login_bloc.dart';
-import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 
 class PasswordPage extends StatefulWidget {

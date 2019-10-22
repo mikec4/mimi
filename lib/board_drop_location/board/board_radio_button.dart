@@ -23,6 +23,7 @@ class _RadioButtonState extends State<BoardRadioButton> {
   Widget build(BuildContext context) {
      _initProviders();
      return Radio(
+      // key: Key(widget.radioValue),
           activeColor: Colors.green,
           groupValue: _provider.groupValue,
           value: widget.radioValue,

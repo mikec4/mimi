@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:mimi/board_drop_location/repository/location_repository.dart';
+import 'package:mimi/board_drop_location/repository/location_repository_impl.dart';
 import 'package:mimi/utils/base_model.dart';
 import '../../../locator.dart';
 import './bloc.dart';
 
 class DropingpointsBloc extends Bloc<DropingpointsEvent, DropingpointsState> {
-  final _repository = locator<LocationsRepository>();
+  final _repository = locator<LocationRepositoryImpl>();
   @override
   DropingpointsState get initialState => LoadingDropingpointsState();
 

@@ -89,8 +89,8 @@ class _MainPaneState extends State<MainPanel> {
   void _navigate() async{
 
     Navigator.push(context, MaterialPageRoute(builder: (context) => MasterLocation()));
-    BlocProvider.of<DropingpointsBloc>(context).dispatch(FetchAllDropingPointsEvent(busId: _busController.busId));
-    BlocProvider.of<BoardingpointsBloc>(context).dispatch(FetchAllBoardingPointsEvent(busId: _busController.busId));        
+    BlocProvider.of<DropingpointsBloc>(context).add(FetchAllDropingPointsEvent(busId: _busController.busId));
+    BlocProvider.of<BoardingpointsBloc>(context).add(FetchAllBoardingPointsEvent(busId: _busController.busId));        
    
 
     _busController.setFare = _fare;             

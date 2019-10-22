@@ -118,7 +118,6 @@ class _PassengerCustomScrollViewState extends State<PassengerCustomScrollView> {
                 //   sliver: SliverToBoxAdapter(
                 //     child: PaymentsTitle(title: 'Passengers Information',),
                 // ),),
-                //SliverPadding(padding: EdgeInsets.only(top: SizeConfig.blockHorizontalSize * 2.78),),
                 widget.passengerListCard,
                 SliverPadding(padding: EdgeInsets.only(top: SizeConfig.blockHorizontalSize * 2.78),),
                 widget.insuranceCard,

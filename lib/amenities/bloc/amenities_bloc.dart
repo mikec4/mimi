@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:mimi/amenities/repository/amenities_repository.dart';
+import 'package:mimi/amenities/repository/amenities_repository_impl.dart';
+import 'package:mimi/locator.dart';
 import 'package:mimi/utils/base_model.dart';
 import './bloc.dart';
 
 class AmenitiesBloc extends Bloc<AmenitiesEvent, AmenitiesState> {
-  final _repository = AmenitiesRepository();
+  final _repository = locator<AmenitiesRepositoryImpl>();
 
   @override
   AmenitiesState get initialState => LoadingAmenitiesState();

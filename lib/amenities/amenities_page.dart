@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mimi/amenities/bloc/amenities_bloc.dart';
 import 'package:mimi/amenities/bloc/bloc.dart';
+import 'package:mimi/utils/size_config.dart';
 
 
 class MainAmenitiesPage extends StatelessWidget {
@@ -40,18 +41,21 @@ class AmenitiesPage extends StatelessWidget {
     return Material(
       child: Container(
         child: ListView.builder(
-          padding: EdgeInsets.symmetric(horizontal: 10.0,vertical: 10.0),
+          padding: EdgeInsets.symmetric(
+            horizontal: SizeConfig.blockHorizontalSize * 2.788,
+            vertical:SizeConfig.blockHorizontalSize * 2.78
+            ),
           itemCount: amenities.length,
           itemBuilder: (context,i){
             return Card(
               elevation: 0.0,
               child: Container(
-                padding: EdgeInsets.only(left: 5.0),
-                height: 40.0,  
+                padding: EdgeInsets.only(left: SizeConfig.blockHorizontalSize * 1.4),
+                height: SizeConfig.blockVerticalSize * 6.76,  
                 child: Row(
                   children: <Widget>[
                     Text("${i+1}."),
-                    SizedBox(width: 10.0,),
+                    SizedBox(width: SizeConfig.blockHorizontalSize * 2.788),
                     Text(amenities[i])
                   ],
                 ),

@@ -33,7 +33,8 @@ dependencies:
   flutter_swiper: ^1.1.6
   barcode_flutter: ^1.0.1
   meta:
-  flutter_bloc: ^0.21.0
+  #flutter_bloc: ^0.21.0 
+  flutter_bloc: ^1.0.0
   bottom_navy_bar: ^5.2.0
   flutter_auth_buttons: ^0.5.0
   dartz: ^0.8.7
@@ -53,43 +54,44 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  pin_code_text_field: ^1.2.1
-  pin_view: ^1.0.1
+ # pin_code_text_field: ^1.2.1
+ # pin_view: ^1.0.1
   font_awesome_flutter:
-  country_pickers: ^1.0.2
-  country_code_picker: ^1.1.5
-  flutter_spinkit: ^3.1.0
-  shared_preferences: ^0.5.1+2
-  flutter_typeahead: ^1.4.0
+  #country_pickers: ^1.0.2
+  #country_code_picker: ^1.1.5
+  #flutter_spinkit: ^3.1.0
+  #shared_preferences: ^0.5.1+2
+ # flutter_typeahead: ^1.4.0
   sliding_up_panel: ^0.3.4
   circular_bottom_navigation: ^0.9.1
   flutter_pagewise:
   fancy_bottom_navigation: ^0.3.2
   scoped_model: ^1.0.1
-  stripe_payment: ^0.1.0
+  #stripe_payment: ^0.1.0
   equatable:
   bloc:
-  giffy_dialog:
+  #giffy_dialog:
   provider:
-  progress_hud:
+ # progress_hud:
   rxdart:
   device_preview: ^0.1.9-beta
-  toast:
+  #toast:
   get_it:
-  flare_flutter:
-  smart_flare:
-  modal_progress_hud:
-  liquid_pull_to_refresh: 
+  #flare_flutter:
+  #smart_flare:
+  #modal_progress_hud:
+ # liquid_pull_to_refresh: 
   flushbar:
-  sms_autofill: ^1.1.0 
-  pin_input_text_field:
+ # sms_autofill: ^1.1.0 
+  #Fpin_input_text_field:
   google_sign_in:
 
     
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  mockito: ^4.1.1
+  bloc_test: ^1.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

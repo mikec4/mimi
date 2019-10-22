@@ -18,14 +18,14 @@ class CustomDropDownMenu extends StatelessWidget {
     var _homeProvider = Provider.of<HomeProvider>(context);
 
     return Container(
-            padding: EdgeInsets.only(
-              top: SizeConfig.blockVerticalSize * 2.03,
-            left: SizeConfig.blockHorizontalSize * 4.17,
-            right: SizeConfig.blockHorizontalSize * 4.17
-            ),
+      key: Key(label),
+      padding: EdgeInsets.only(
+        top: SizeConfig.blockVerticalSize * 2.03,
+        left: SizeConfig.blockHorizontalSize * 4.17,
+        right: SizeConfig.blockHorizontalSize * 4.17
+      ),
             //height: SizeConfig.blockVerticalSize * 12.16,
-            child: DropdownButtonFormField(
-            
+            child: DropdownButtonFormField(            
               value: label.contains('From') ?  _homeProvider.originalLocation : _homeProvider.destination,
               onSaved: (String value) async{
 

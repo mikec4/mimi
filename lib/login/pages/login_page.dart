@@ -84,63 +84,63 @@ class BusIcon extends StatelessWidget {
   }
 }
 
-class MobileTextField extends StatelessWidget {
+// class MobileTextField extends StatelessWidget {
   
-  @override
-  Widget build(BuildContext context) {
-    return Container(
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
 
-      child: TextFormField(
-        cursorColor: Colors.white,
-        textInputAction: TextInputAction.done,
-        keyboardType: TextInputType.phone,
-        style: TextStyle(color: Colors.white),
-        onFieldSubmitted: (value){
-          Provider.of<UserProvider>(context).setMobileNumber = value;
-        },
-        decoration: InputDecoration(
-          labelText: 'Mobile',
-          labelStyle: TextStyle(color: Colors.white),
-          prefixIcon: Icon(MdiIcons.cellphoneIphone,size : 25,color: Colors.white),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-            color: Colors.white
-            )
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-            color: Colors.white
-          )
-        )
-      ),
-    ),
-    );
-  }
-}
+//       child: TextFormField(
+//         cursorColor: Colors.white,
+//         textInputAction: TextInputAction.done,
+//         keyboardType: TextInputType.phone,
+//         style: TextStyle(color: Colors.white),
+//         onFieldSubmitted: (value){
+//           Provider.of<UserProvider>(context).setMobileNumber = value;
+//         },
+//         decoration: InputDecoration(
+//           labelText: 'Mobile',
+//           labelStyle: TextStyle(color: Colors.white),
+//           prefixIcon: Icon(MdiIcons.cellphoneIphone,size : 25,color: Colors.white),
+//           enabledBorder: UnderlineInputBorder(
+//             borderSide: BorderSide(
+//             color: Colors.white
+//             )
+//           ),
+//           focusedBorder: UnderlineInputBorder(
+//             borderSide: BorderSide(
+//             color: Colors.white
+//           )
+//         )
+//       ),
+//     ),
+//     );
+//   }
+// }
 
 
 
-class LoginButton extends StatelessWidget {
+// class LoginButton extends StatelessWidget {
 
-  @override
-  Widget build(BuildContext context) {
-    final _user = Provider.of<UserProvider>(context);
-    return MaterialButton(
-      child: Text('LOGIN'),
-      textColor: Colors.white,
-      color: Colors.orangeAccent,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5.0)
-      ),
-      height: 50.0,
-      minWidth: 300.0,
-      onPressed: (){
-        Navigator.push(context, MaterialPageRoute(builder: (_) => MobileLoginPage()));
-        BlocProvider.of<LoginBloc>(context).dispatch(VerifyMobileNumberLoginEvent(mobile: _user.mobileNumber));
-      },
-    );
-  }
-} 
+//   @override
+//   Widget build(BuildContext context) {
+//     final _user = Provider.of<UserProvider>(context);
+//     return MaterialButton(
+//       child: Text('LOGIN'),
+//       textColor: Colors.white,
+//       color: Colors.orangeAccent,
+//       shape: RoundedRectangleBorder(
+//         borderRadius: BorderRadius.circular(5.0)
+//       ),
+//       height: 50.0,
+//       minWidth: 300.0,
+//       onPressed: (){
+//         Navigator.push(context, MaterialPageRoute(builder: (_) => MobileLoginPage()));
+//         BlocProvider.of<LoginBloc>(context).dispatch(VerifyMobileNumberLoginEvent(mobile: _user.mobileNumber));
+//       },
+//     );
+//   }
+// } 
 
 
 class GoogleLogInButton extends StatelessWidget {
@@ -150,11 +150,12 @@ class GoogleLogInButton extends StatelessWidget {
       color: Colors.transparent,
       height: 50.0,
       child: GoogleSignInButton(
+        key: Key('GOOGLESIGNIN'),
         borderRadius: 5,
         darkMode: false,
         text: 'Continue with Google',
         onPressed: (){
-          BlocProvider.of<LoginBloc>(context).dispatch(GoogleLoginEvent());
+          BlocProvider.of<LoginBloc>(context).add(GoogleLoginEvent());
           Navigator.push(context, MaterialPageRoute(builder: (context)=> GoogleLoginPage()));
         },
       ),
@@ -169,10 +170,11 @@ class FacebookLogInButton extends StatelessWidget {
       color: Colors.transparent,
       height: 50.0,
       child: FacebookSignInButton(
+        key: Key('FACEBOOKSIGNIN'),
         borderRadius: 5,
         text: 'Continue with Facebook',
         onPressed: (){
-          BlocProvider.of<LoginBloc>(context).dispatch(FacebookLoginEvent());
+          BlocProvider.of<LoginBloc>(context).add(FacebookLoginEvent());
           Navigator.push(context, MaterialPageRoute(builder: (context)=> FacebookLoginPage()));
         },
       ),

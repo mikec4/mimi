@@ -25,19 +25,18 @@ class _TeaserState extends State<HomePage> {
  static const home_page = '/homePage';
 
 
- List<String> _from = [
+  List<String> _from = [
    'Dar es salaam','Musoma','Mwanza','Kahama','Kigoma','Iringa'
- ];
+  ];
 
- List<String> _destination = [
+  List<String> _destination = [
    'Dar es salaam','Mwanza','Kahama','Kigoma','Iringa','Musoma'
- ];
-
- //List<String> _duration = ['Morning', 'Noon'];
+  ];
 
 
- HomeProvider _homeProvider;
- SearchBloc _searchBloc;
+
+  HomeProvider _homeProvider;
+ // SearchBloc _searchBloc;
 
   String _orignalLocation;
   String _destinationLocation;
@@ -46,51 +45,60 @@ class _TeaserState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    _homeProvider = Provider.of<HomeProvider>(context);
-    _searchBloc = BlocProvider.of<SearchBloc>(context);
+    //_homeProvider = Provider.of<HomeProvider>(context);
+    //_searchBloc = BlocProvider.of<SearchBloc>(context);
     
-    _orignalLocation = _homeProvider.originalLocation;
-    _destinationLocation = _homeProvider.destination;
-    _dateTime = _homeProvider.date;
+    
 
 
-    return   Material(
-      
-      child: Stack(
-        children: <Widget>[
-          Container(
-            color: Theme.of(context).primaryColor,
-            height: MediaQuery.of(context).size.height * 0.4,
-          ),
-          
-          Positioned.fill(
-           // top: MediaQuery.of(context).size.height * 0.02,
-           top: SizeConfig.blockVerticalSize * 8.0,  
-            child: ListView(
-              children: <Widget>[
-                Container(
-                  alignment: Alignment.center,
-                   child: Text(
-                     'Yai',
-                     style: TextStyle(
-                       fontFamily: 'NothingYouCouldDo',
-                       fontSize: SizeConfig.blockVerticalSize * 5.0,color: Colors.white,fontWeight: FontWeight.w600
-                       ),
-                    ),
-                ),
-                SizedBox(height: SizeConfig.blockVerticalSize * 2,),
-                Container(
-                  alignment: Alignment.center,
-                  child: Text('Where are you going?',style: TextStyle(fontSize: 18.0,color: Colors.white),),
-                ),
-                _cardContainer(),
-                SizedBox(height: SizeConfig.blockVerticalSize * 2.0),
-                _searchButton()
-                ],
+    return   Consumer<HomeProvider>(
+
+      builder: (context, consumer,_) {
+
+        _orignalLocation = consumer.originalLocation;
+        _destinationLocation = consumer.destination;
+        _dateTime = consumer.date;
+
+        _homeProvider = consumer;
+
+        return Material(
+          child: Stack(
+            children: <Widget>[
+              Container(
+                color: Theme.of(context).primaryColor,
+                height: MediaQuery.of(context).size.height * 0.4,
               ),
+              
+              Positioned.fill(
+               // top: MediaQuery.of(context).size.height * 0.02,
+               top: SizeConfig.blockVerticalSize * 8.0,  
+                child: ListView(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                       child: Text(
+                         'Yai',
+                         style: TextStyle(
+                           fontFamily: 'NothingYouCouldDo',
+                           fontSize: SizeConfig.blockVerticalSize * 5.0,color: Colors.white,fontWeight: FontWeight.w600
+                           ),
+                        ),
+                    ),
+                    SizedBox(height: SizeConfig.blockVerticalSize * 2,),
+                    Container(
+                      alignment: Alignment.center,
+                      child: Text('Where are you going?',style: TextStyle(fontSize: 18.0,color: Colors.white),),
+                    ),
+                    _cardContainer(),
+                    SizedBox(height: SizeConfig.blockVerticalSize * 2.0),
+                    _searchButton()
+                    ],
+                  ),
+                )
+              ],
             )
-          ],
-        )
+        );
+      }
     );
   }
 
@@ -115,30 +123,6 @@ class _TeaserState extends State<HomePage> {
           children: <Widget>[
             CustomDropDownMenu(routes: _from,label: 'From',),
             CustomDropDownMenu(routes: _destination,label: 'Destination',),
-            //To be checked
-            // Container(
-            //   padding: EdgeInsets.only(top: 30.0,left: 15.0,right: 15.0),
-            //   child: DropdownButtonFormField(
-            //     onChanged: (value){
-            //       setState(() {
-            //         duration = value;
-            //       });
-            //     },
-
-            //     value: duration,
-            //     items: _duration.map((value) => DropdownMenuItem(
-            //     value: value,
-            //     child: Text(value,style: TextStyle(color: Colors.black)),
-            //   )).toList(),
-            //     decoration: InputDecoration(
-            //     labelText: 'Duration',
-            //     prefixIcon: duration == null ? Icon(MdiIcons.clock) : 
-            //      duration.contains('Morning') ? Icon(MdiIcons.weatherSunsetUp,color: Colors.orangeAccent,):
-            //       Icon(MdiIcons.weatherSunset,color: Colors.orangeAccent,),
-            //     border: OutlineInputBorder()
-            //   ),
-            //   ),
-            // ),
             DatePicker()
           ],
         ),
@@ -150,10 +134,9 @@ class _TeaserState extends State<HomePage> {
 
  Widget _searchButton(){
    return Container(
+     key: Key('SEARCH'),
      alignment: Alignment(0.0, SizeConfig.blockHorizontalSize * 0.09),
      child: MaterialButton(
-      //  minWidth: 300.0,
-      //  height: 50.0,
        minWidth: SizeConfig.blockHorizontalSize * 80.0,
        height: SizeConfig.blockVerticalSize * 6.0,
        color: Colors.orangeAccent,
@@ -179,7 +162,7 @@ class _TeaserState extends State<HomePage> {
 
     //Map<String,dynamic> date = {"DepartureDate" : _dateTime};
 
-    _searchBloc.dispatch(SearchByName(dateTime: _dateTime,route: route));
+    BlocProvider.of<SearchBloc>(context).add(SearchByName(dateTime: _dateTime,route: route));
 
     Navigator.push(context, MaterialPageRoute(builder: (context) => SearchPage()));
 

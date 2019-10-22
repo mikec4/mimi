@@ -24,7 +24,6 @@ class _PaymentsPageState extends State<PaymentsMethodPage> {
       appBar: AppBar(title: RoutesTitle()),
       body: Scrollbar(
         child: CustomScrollView(
-          
           slivers: <Widget>[
             _largeBox(),  
            PaymentsTitle(title: 'Trip details',),
@@ -42,7 +41,6 @@ class _PaymentsPageState extends State<PaymentsMethodPage> {
         ),
       ),
     );
-
 
   }
 
@@ -76,7 +74,6 @@ class PaymentDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<BusController>(
       builder: (context, controller,_) {
-        print('IS INSURED ${controller.insured}');
         return SliverPadding(
           padding: EdgeInsets.symmetric(horizontal: SizeConfig.blockHorizontalSize * 2.78),
           sliver: SliverToBoxAdapter(

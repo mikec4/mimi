@@ -1,5 +1,4 @@
 import 'dart:core';
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,14 +17,14 @@ Future<void>  main() async {
   
   
 
- setupLocator();
+  await setupLocator();
   
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,DeviceOrientation.portraitDown]);
    
 
   runApp(
     BlocProvider(
-      builder: (context) => AuthenticationBloc() ..dispatch(AppStarted()),
+      builder: (context) => AuthenticationBloc() ..add(AppStarted()),
       child: MyApp()
     )
   );
@@ -46,18 +45,8 @@ Future<void>  main() async {
 // }
 
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  
-  @override
-  void initState() {
-    super.initState();
-  }
-  @override
+class MyApp extends StatelessWidget {
+   @override
   Widget build(BuildContext context) {
     return BlocProvider<LoginBloc>(
       builder: (_) => LoginBloc(),
@@ -66,8 +55,9 @@ class _MyAppState extends State<MyApp> {
     
     
   }
-
 }
+
+
 
 
 

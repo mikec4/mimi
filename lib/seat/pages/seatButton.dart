@@ -23,9 +23,10 @@ class _SeatButtonState extends State<SeatButton> {
 
   List<Seat> _seats = [];
   List<String> _currentSelectSeatNumber = [];
-  List<String> _currentGender = [];
+
+  //List<String> _currentGender = [];
   
-  Seat _seat;
+ // Seat _seat;
 
   int get seatIndex => widget.seatIndex;
   String get seatNumber => widget.seatIndex.toString();
@@ -54,7 +55,7 @@ class _SeatButtonState extends State<SeatButton> {
   }
 
   Widget _build(BusController controller){
-    print('SIZES ${SizeConfig.blockHorizontalSize} and ${SizeConfig.blockVerticalSize}');
+    //print('SIZES ${SizeConfig.blockHorizontalSize} and ${SizeConfig.blockVerticalSize}');
     return SizedBox(
       key: Key(seatNumber),
       width: SizeConfig.blockHorizontalSize * 7.8,

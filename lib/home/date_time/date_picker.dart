@@ -19,6 +19,7 @@ class DatePicker extends StatelessWidget {
     var _homeProvider = Provider.of<HomeProvider>(context);
 
    return Container(
+      key: Key('DatePicker'),
           padding: EdgeInsets.only(
             top: SizeConfig.blockVerticalSize * 2.03,
             left: SizeConfig.blockHorizontalSize * 4.17,
@@ -46,14 +47,13 @@ class DatePicker extends StatelessWidget {
             onShowPicker: (context, currentValue) {
               return showDatePicker(
                   context: context,
-
                   firstDate: DateTime.now(),
                   initialDate: currentValue ?? DateTime.now(),
                   lastDate: DateTime(2100));
-            },
-          ),
+        },
+      ),
       
-   );
+    );
   }
 
 }

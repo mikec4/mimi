@@ -1,7 +1,6 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart' as prefix0;
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mimi/amenities/bloc/bloc.dart';
 import 'package:mimi/bus/bloc/bloc.dart';
@@ -213,10 +212,10 @@ class _CustomCardListState extends State<CustomCardList> {
                   Provider.of<BusController>(context).resetSeats();
                   Provider.of<BusController>(context).setBusId = widget.buses[i].id;
                   
-                  BlocProvider.of<BusBloc>(context).dispatch(CreateBusEvent(selectedBus: widget.buses[i]));
-                  BlocProvider.of<AmenitiesBloc>(context).dispatch(FetchAllAmenitiesEvent(busId: widget.buses[i].id));
-                  BlocProvider.of<PoliciesBloc>(context).dispatch(FetchAllPoliciesEvent(busId: widget.buses[i].id));
-                  BlocProvider.of<SeatBloc>(context).dispatch(FetchAllSeatEvent(busId: widget.buses[i].id));
+                  BlocProvider.of<BusBloc>(context).add(CreateBusEvent(selectedBus: widget.buses[i]));
+                  BlocProvider.of<AmenitiesBloc>(context).add(FetchAllAmenitiesEvent(busId: widget.buses[i].id));
+                  BlocProvider.of<PoliciesBloc>(context).add(FetchAllPoliciesEvent(busId: widget.buses[i].id));
+                  BlocProvider.of<SeatBloc>(context).add(FetchAllSeatEvent(busId: widget.buses[i].id));
 
                 },
                 child: CustomBusCard(
@@ -256,7 +255,7 @@ class CustomDateTimeLine extends StatelessWidget {
                 };
 
 
-              BlocProvider.of<SearchBloc>(context).dispatch(SearchByName(dateTime: dt,route: route));
+              BlocProvider.of<SearchBloc>(context).add(SearchByName(dateTime: dt,route: route));
               model.setDate(dt);
             },
           ),

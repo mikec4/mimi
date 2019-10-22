@@ -1,14 +1,12 @@
 import 'dart:async';
-import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:mimi/locator.dart';
-import 'package:mimi/login/loginEntity/user_entity.dart';
-import 'package:mimi/login/loginRepository/user_repository.dart';
+import 'package:mimi/login/loginRepository/user_repository_impl.dart';
 import './bloc.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   
-  final _userRepository = UserRepository();
+  final _userRepository = locator<UserRepositoryImpl>();
 
   @override
   LoginState get initialState => InitialLoginState();
@@ -18,12 +16,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
      LoginEvent event,
   ) async* {
 
-    if(event is VerifyMobileNumberLoginEvent){
-      yield* _verifyPhoneNumber(mobile: event.internatinalizeNumber(event.mobile));
-    }
 
-    
-    else if(event is GoogleLoginEvent){
+    if(event is GoogleLoginEvent){
       yield* _loginInWithGoogle();
 
     }
@@ -32,27 +26,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield* _loginWithFacebook();
     }
 
-    else if (event is LoginWithMobileNumberLoginEvent) {
-      yield* _loginWithMobileNumber(verificationId: event.verificationId,smsCode: event.smsCode);
-    }
+    
   }
 
-  Stream<LoginState> _verifyPhoneNumber({String mobile}) async*{
-     
-    yield LoadingLoginState();
 
-    try {
-
-      await _userRepository.verifyPhoneNumber(mobile);
-      final mobileNumber = await _userRepository.getUserNumber();
-
-      yield VerifyMobileNumberLoginState(user: mobileNumber);
-
-    } catch (e) {
-
-      yield e is ErrorLoginState ?? ErrorLoginState(message: e.message) ;
-    }
-  }
 
   Stream<LoginState> _loginInWithGoogle() async*{
 
@@ -95,17 +72,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
   }
 
-  Stream<LoginState> _loginWithMobileNumber({String verificationId, String smsCode}) async*{
-    yield LoadingLoginState();
-    
-    try {
-      final user = await _userRepository.signInWithPhoneNumber(verificationId:verificationId,smsCode: smsCode);
-      yield SuccessMobileNumberLoginState(success: user.phoneNumber);
-
-    } catch (e) {
-      yield e is ErrorLoginState? ErrorLoginState(message: e.message) : ErrorLoginState(message: 'No platform exception');
-    }
-  }
 
  
 }

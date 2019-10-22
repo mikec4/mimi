@@ -1,14 +1,12 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz.dart';
+import 'package:mimi/failure/failure.dart';
+import 'package:mimi/seat/model/seatList.dart';
 
-class SeatRepository {
+abstract class SeatRepository {
 
-  Future<List<DocumentSnapshot>> getAllSeats(String id) async {
-
-    QuerySnapshot querySnapshot = await Firestore.instance.collection('Passengers').where('BusId',isEqualTo: id).getDocuments();
-    
-    return querySnapshot.documents;
-  }
-
-  
+  Future<dynamic> getAllSeats(String id);
+  Future<Either<Failure,SeatList>> getSeats(String id);
 }
+
+

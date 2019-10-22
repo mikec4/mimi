@@ -52,6 +52,7 @@ class BoardLocationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.separated(
+        key: Key('BOARDLOCATIONLIST'),
         separatorBuilder: (context,i) => Container(height: 0.5,color: Colors.black,),
         itemCount: locations.length,
         itemBuilder: (context,i) =>
@@ -69,14 +70,13 @@ class BoardLocationPage extends StatelessWidget {
  Widget _radioRow(int index){
    
    return Row(
-
-    children: <Widget>[
-      BoardRadioButton(
-      radioValue: locations[index],),
-      Text(locations[index]),
-    
-    ],
-  );
+     key: Key(locations[index]),
+     children: <Widget>[
+       BoardRadioButton(
+       radioValue: locations[index],),
+       Text(locations[index]),
+      ],
+    );
  }
  
 }

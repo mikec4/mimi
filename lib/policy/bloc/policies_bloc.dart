@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:mimi/locator.dart';
-import 'package:mimi/policy/repository/policies_repository.dart';
+import 'package:mimi/policy/repository/policieis_repository_impl.dart';
 import 'package:mimi/utils/base_model.dart';
 import './bloc.dart';
 
 class PoliciesBloc extends Bloc<PoliciesEvent, PoliciesState> {
 
-  final _repository = locator<PoliciesRepository>();
+  final _repository = locator<PoliciesRepositoryImpl>();
 
   @override
   PoliciesState get initialState => LoadingPoliciesState();

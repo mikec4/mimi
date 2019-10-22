@@ -13,18 +13,10 @@ class PassengerController with ChangeNotifier{
   }
   
   void addPassenger(Passenger passenger){
-    //  if(_passengers.contains(passenger)){
-    //    _passengers.remove(passenger);
-    //  }
     _passengers.add(passenger);
     notifyListeners();
   }
 
-  void removePassenger(int i){
-    this._passengers.removeAt(i);
-    notifyListeners();
-  }
 
-  
   
 }

@@ -85,7 +85,7 @@ class _CustomPinPutState extends State<CustomPinPut> {
   void _showSnackBar(String pin) async {
 
     BlocProvider.of<LoginBloc>(context).
-    dispatch(LoginWithMobileNumberLoginEvent(smsCode: pin,verificationId: widget.verificationId));
+    add(LoginWithMobileNumberLoginEvent(smsCode: pin,verificationId: widget.verificationId));
     //Navigator.push(context, MaterialPageRoute(builder: (_) => MobileCodeHomePage()));
  
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mimi/policy/bloc/bloc.dart';
+import 'package:mimi/utils/size_config.dart';
 
 
 class MainPoliciesPage extends StatelessWidget {
@@ -28,6 +29,8 @@ class MainPoliciesPage extends StatelessWidget {
     );
   }
 }
+
+
 class PoliciesPage extends StatelessWidget {
   final List<dynamic> policies;
 
@@ -38,18 +41,21 @@ class PoliciesPage extends StatelessWidget {
     return Material(
       child: Container(
         child: ListView.builder(
-          padding: EdgeInsets.symmetric(horizontal: 10.0,vertical: 10.0),
+          padding: EdgeInsets.symmetric(
+            horizontal: SizeConfig.blockHorizontalSize * 2.788,
+            vertical: SizeConfig.blockHorizontalSize * 2.788,
+            ),
           itemCount: policies.length,
           itemBuilder: (context,i){
             return Card(
               elevation: 0.0,
               child: Container(
-                padding: EdgeInsets.only(left: 5.0),
-                height: 40.0,  
+                padding: EdgeInsets.only(left:SizeConfig.blockHorizontalSize * 1.4),
+                height: SizeConfig.blockVerticalSize * 6.76,  
                 child: Row(
                   children: <Widget>[
                     Text("${i+1}."),
-                    SizedBox(width: 10.0,),
+                    SizedBox(width: SizeConfig.blockHorizontalSize * 2.788,),
                     Flexible(child: Container(child: Text(policies[i])))
                   ],
                 ),
