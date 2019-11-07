@@ -44,66 +44,69 @@ class _TeaserState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    _initialize();
 
     //_homeProvider = Provider.of<HomeProvider>(context);
     //_searchBloc = BlocProvider.of<SearchBloc>(context);
-    
-    
 
+    // return   Consumer<HomeProvider>(
 
-    return   Consumer<HomeProvider>(
+    //   builder: (context, consumer,_) {
 
-      builder: (context, consumer,_) {
+    //     _orignalLocation = consumer.originalLocation;
+    //     _destinationLocation = consumer.destination;
+    //     _dateTime = consumer.date;
 
-        _orignalLocation = consumer.originalLocation;
-        _destinationLocation = consumer.destination;
-        _dateTime = consumer.date;
+    //     _homeProvider = consumer;
 
-        _homeProvider = consumer;
-
-        return Material(
-          child: Stack(
-            children: <Widget>[
-              Container(
-                color: Theme.of(context).primaryColor,
-                height: MediaQuery.of(context).size.height * 0.4,
-              ),
-              
-              Positioned.fill(
-               // top: MediaQuery.of(context).size.height * 0.02,
-               top: SizeConfig.blockVerticalSize * 8.0,  
-                child: ListView(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.center,
-                       child: Text(
-                         'Yai',
-                         style: TextStyle(
-                           fontFamily: 'NothingYouCouldDo',
-                           fontSize: SizeConfig.blockVerticalSize * 5.0,color: Colors.white,fontWeight: FontWeight.w600
-                           ),
-                        ),
-                    ),
-                    SizedBox(height: SizeConfig.blockVerticalSize * 2,),
-                    Container(
-                      alignment: Alignment.center,
-                      child: Text('Where are you going?',style: TextStyle(fontSize: 18.0,color: Colors.white),),
-                    ),
-                    _cardContainer(),
-                    SizedBox(height: SizeConfig.blockVerticalSize * 2.0),
-                    _searchButton()
-                    ],
+        return Stack(
+          children: <Widget>[
+            Container(
+              color: Theme.of(context).primaryColor,
+              height: MediaQuery.of(context).size.height * 0.4,
+            ),
+            
+            Positioned.fill(
+             // top: MediaQuery.of(context).size.height * 0.02,
+             top: SizeConfig.blockVerticalSize * 8.0,  
+              child: ListView(
+                children: <Widget>[
+                  Container(
+                    alignment: Alignment.center,
+                     child: Text(
+                       
+                       'Yai',
+                       key: Key('Yai'),
+                       style: TextStyle(
+                         fontFamily: 'NothingYouCouldDo',
+                         fontSize: SizeConfig.blockVerticalSize * 5.0,color: Colors.white,fontWeight: FontWeight.w600
+                         ),
+                      ),
                   ),
-                )
-              ],
-            )
-        );
-      }
-    );
+                  SizedBox(height: SizeConfig.blockVerticalSize * 2,),
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text('Where are you going?',key:Key('Where'),style: TextStyle(fontSize: 18.0,color: Colors.white),),
+                  ),
+                  _cardContainer(),
+                  SizedBox(height: SizeConfig.blockVerticalSize * 2.0),
+                  _searchButton()
+                  ],
+                ),
+              )
+            ],
+          );
+     // }
+    //);
   }
 
 
-
+  void _initialize(){
+    _homeProvider = Provider.of<HomeProvider>(context);
+    _orignalLocation = _homeProvider.originalLocation;
+    _destinationLocation = _homeProvider.destination;
+    _dateTime = _homeProvider.date;
+  }
  
   
  String duration ;
@@ -121,6 +124,8 @@ class _TeaserState extends State<HomePage> {
         height: SizeConfig.blockVerticalSize * 33.5,  
         child: Column(
           children: <Widget>[
+            //DestinationDropDown(destinations: _destination,label: 'Destination',),
+            //OriginalDropDown(originalLocations: _from,label: 'From',),
             CustomDropDownMenu(routes: _from,label: 'From',),
             CustomDropDownMenu(routes: _destination,label: 'Destination',),
             DatePicker()

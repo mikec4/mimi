@@ -32,18 +32,6 @@ Future<void>  main() async {
 
 }
 
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Teaser(),
-//       theme: ThemeData(
-//         primaryColor: Colors.purple
-//       ),
-//     );
-//   }
-// }
-
 
 class MyApp extends StatelessWidget {
    @override

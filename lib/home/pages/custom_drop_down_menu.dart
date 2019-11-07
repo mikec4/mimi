@@ -16,7 +16,8 @@ class CustomDropDownMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _homeProvider = Provider.of<HomeProvider>(context);
-
+    print('LABELS ARE ${routes.length}');
+    
     return Container(
       key: Key(label),
       padding: EdgeInsets.only(

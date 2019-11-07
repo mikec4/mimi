@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mimi/board_drop_location/board/bloc/bloc.dart';
@@ -7,7 +6,9 @@ import 'package:mimi/failure/failure.dart';
 import 'package:mimi/utils/base_model.dart';
 import 'package:mockito/mockito.dart';
 
-class BoardingpointsMock extends Mock implements LocationRepositoryImpl{ }
+
+class BoardingpointsMock extends Mock implements LocationRepositoryImpl{}
+
 
 void main(){
   
@@ -29,10 +30,9 @@ void main(){
 
     final id = 'test';
     final failure = Failure(failure: 'Error');
-    final List<dynamic> boardingPoints = [];
     final model = BaseModel();
     
-
+    
     test('Emits [LoadingBoardingpointsState]', () {
       expect(boardingpointsBloc.initialState, LoadingBoardingpointsState());
     });
@@ -46,20 +46,21 @@ void main(){
 
       final expected = [LoadingBoardingpointsState(),FetchAllBoardingPointsState(boardingPoints: model.items)];
 
-      when(boardingpointsMock.getBoardLocations(any)).thenAnswer((_) async => Right(model));
+      when(boardingpointsMock.getLocations(any,any)).thenAnswer((_) async => Right(model));
 
       
       expectLater(boardingpointsBloc, emitsInOrder(expected));
 
       boardingpointsBloc.add(FetchAllBoardingPointsEvent(busId:id));
        
-
     });
 
+
     test('Emits [LoadingBoardingpointsState,ErrorBoardingPointsState]', () {
+
       final response = [LoadingBoardingpointsState(),ErrorBoardingPointsState(error: failure.failure)];
 
-      when(boardingpointsMock.getBoardLocations(any)).thenAnswer((_) async => Left(failure));
+      when(boardingpointsMock.getLocations(any,any)).thenAnswer((_) async => Left(failure));
 
       expectLater(boardingpointsBloc, emitsInOrder(response));
 
@@ -71,3 +72,4 @@ void main(){
   });
 
 }
+

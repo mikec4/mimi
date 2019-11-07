@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 
 class HomeProvider with ChangeNotifier{
 
-  String _fromLocation;
-  String _destination;
-  DateTime _dateTime;
+  String _fromLocation ;
+  String _destination ;
+  DateTime _dateTime; 
 
   String get originalLocation => _fromLocation;
   String get destination => _destination;
@@ -24,4 +24,5 @@ class HomeProvider with ChangeNotifier{
     _dateTime = dt;
     notifyListeners();
   }
+  
 }

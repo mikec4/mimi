@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:mimi/passenger/model/passenger.dart';
-import 'package:mimi/passenger/passengerProvider/passenger_controller.dart';
 import 'package:mimi/utils/size_config.dart';
 import 'package:provider/provider.dart';
 
+
 import '../locator.dart';
+import 'model/passenger.dart';
+import 'passengerProvider/passenger_controller.dart';
 
 class PassengerCard extends StatefulWidget {
   final String seatNumber;
@@ -135,6 +136,7 @@ class _PassengerCardState extends State<PassengerCard> with AutomaticKeepAliveCl
 
       return 'Name is required';
     }
+    return null;
   }
 
   Widget _mobileField(){
@@ -149,6 +151,7 @@ class _PassengerCardState extends State<PassengerCard> with AutomaticKeepAliveCl
            onFieldSubmitted: _onMobileSubmit,
            textInputAction: TextInputAction.next,
            validator: _onMobileValidator,
+           maxLength: 10,
            onChanged: (value){},
            decoration: InputDecoration(
              labelText: 'Mobile',
@@ -184,12 +187,13 @@ class _PassengerCardState extends State<PassengerCard> with AutomaticKeepAliveCl
       return 'Mobile number should have 10 digits';
     }
     
-            
+     return null;       
   }
 
   
 
   Widget _gender(){
+    
     _passengerModel.setGender = _value;
 
     return Container(

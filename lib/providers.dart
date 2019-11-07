@@ -1,12 +1,10 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mimi/board_drop_location/board/board_provider.dart';
 import 'package:mimi/board_drop_location/drop/drop_provider.dart';
 import 'package:mimi/bus/busProvider/bus_controller.dart';
 import 'package:mimi/login/pages/login_page.dart';
 import 'package:mimi/login/provider/user_provider.dart';
-
 
 import 'package:mimi/passenger/passengerProvider/passenger_controller.dart';
 import 'package:mimi/payment/pages/provider/payments_method_controller.dart';
@@ -38,7 +36,6 @@ List<SingleChildCloneableWidget> providers = [
     builder: (_) => PassengerController(),
     child: HomePage(),
   ),
-
 
  ChangeNotifierProvider<BusController>(
    builder: (_) => BusController(),

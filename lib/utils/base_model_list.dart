@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:mimi/utils/base_model.dart';
 
 class BaseModelList extends Equatable {
+  
   List<BaseModel> baseModels;
   
   BaseModelList({this.baseModels});

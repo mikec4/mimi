@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:mimi/board_drop_location/repository/location_repository_impl.dart';
-import 'package:mimi/locator.dart';
-import 'package:mimi/utils/base_model.dart';
 import './bloc.dart';
 
 class BoardingpointsBloc extends Bloc<BoardingpointsEvent, BoardingpointsState> {
   
-  LocationRepositoryImpl _locationRepository;
+  final LocationRepositoryImpl _locationRepository;
 
   BoardingpointsBloc({LocationRepositoryImpl locationRepository}) : 
   _locationRepository = locationRepository ?? LocationRepositoryImpl();
@@ -31,7 +29,7 @@ class BoardingpointsBloc extends Bloc<BoardingpointsEvent, BoardingpointsState> 
       //   yield e is ErrorBoardingPointsState ? ErrorBoardingPointsState(error: e.error) : ErrorBoardingPointsState(error: 'Not backend error');
       // }
 
-      var result = await _locationRepository.getBoardLocations(event.busId);
+      var result = await _locationRepository.getLocations(event.busId,'BoardingPoints');
 
       yield* result.fold((failure) async*{
 

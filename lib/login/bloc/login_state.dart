@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import 'package:mimi/login/model/user_model.dart';
 
 @immutable
 abstract class LoginState extends Equatable {
@@ -18,8 +19,8 @@ class LoadingLoginState extends LoginState{
 
 class GoogleLoginState extends LoginState{
 
-  final Map<String,dynamic> googleUser;
-
+  //final Map<String,dynamic> googleUser;
+  final UserModel googleUser;
   GoogleLoginState({@required this.googleUser}): super([googleUser]);
 
   @override
@@ -30,8 +31,8 @@ class GoogleLoginState extends LoginState{
 
 
 class FacebookLoginState extends LoginState{
-  final Map<String, dynamic> facebookUser;
-
+  //final Map<String, dynamic> facebookUser;
+   final UserModel facebookUser;
   FacebookLoginState({this.facebookUser}) : super([facebookUser]);
 
   @override

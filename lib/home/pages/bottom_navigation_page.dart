@@ -14,6 +14,7 @@ class BottomNavigationPage extends StatefulWidget {
 }
 
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
+
   int _currentIndex = 0;
   
   PageController _pageController = PageController();
@@ -52,13 +53,15 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     HomePage(),
     BookingsPage(),
     HelpPage(),
-    AccountPag()
+    AccountPage(),
+
   ];
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    // body: _pages[_currentIndex],
       body:PageView.builder(
         onPageChanged: (i){
           setState(() {

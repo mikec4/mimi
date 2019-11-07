@@ -1,12 +1,17 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:mimi/locator.dart';
+import 'package:dartz/dartz.dart';
+import 'package:mimi/failure/failure.dart';
 import 'package:mimi/login/loginRepository/user_repository_impl.dart';
+import 'package:mimi/login/model/user_model.dart';
 import './bloc.dart';
 
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
 
-  final _userRepository = locator<UserRepositoryImpl>();
+  final UserRepositoryImpl _userRepository;
+
+  AuthenticationBloc({UserRepositoryImpl userRepository}) : 
+  _userRepository = userRepository ?? UserRepositoryImpl();
 
   @override
   AuthenticationState get initialState => InitialAuthenticationState();
@@ -16,13 +21,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     AuthenticationEvent event,
   ) async* {
 
-     if (event is AppStarted) {
-
+    if (event is AppStarted) {
       yield* _mapAppStartedToState();
-
-    } else if (event is LoggedInWithEmail) {
-
-      yield* _mapLoggedInWithEmailToState();
 
     }  else if (event is LoggedOut) {
 
@@ -33,35 +33,62 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
 
   Stream<AuthenticationState> _mapAppStartedToState() async* {
 
-  try {
+    final result = await _userRepository.isLoggedIn();
 
-    final isSignedIn = await _userRepository.isSignedIn();
+    yield* result.fold(
 
-    if (isSignedIn) {
+      (failure) async*{
+        yield ErrorAuthenticated(error: failure.failure);   
+      }, 
 
-      final email = await _userRepository.getUserEmail();
-     // final mobile = await _userRepository.getUserNumber();
+      (isLoggedIn) async*{
+        
+       if(isLoggedIn){
+         var user = await _userRepository.currentUser();
+         yield* _mapLoggedInWithEmailToState(user);
 
-      if(email.length != null){
-        yield AuthenticatedWithEmail(email: email);
-      }
+        } else {
+         yield Unauthenticated();
+       } 
+      });
+
+  // try {
+
+  //   final isSignedIn = await _userRepository.isSignedIn();
+
+  //   if (isSignedIn) {
+
+  //     final email = await _userRepository.getUserEmail();
+
+  //     if(email.length != null){
+  //       yield AuthenticatedWithEmail(email: email);
+  //     }
       
 
-    } else {
+  //   } else {
 
-      yield Unauthenticated();
-    }
-  } catch (_) {
+  //     yield Unauthenticated();
+  //   }
+  // } catch (_) {
 
-    yield Unauthenticated();
-  }
+  //   yield Unauthenticated();
+  // }
 }
 
-Stream<AuthenticationState> _mapLoggedInWithEmailToState() async* {
+Stream<AuthenticationState> _mapLoggedInWithEmailToState(Either<Failure,UserModel> user) async* {
 
-  yield AuthenticatedWithEmail(email: await _userRepository.getUserEmail());
+  yield* user.fold(
+    (failure) async*{
+
+      yield ErrorAuthenticated(error: failure.failure);
+    }, 
+    (currentUser)async*{
+
+      yield AuthenticatedWithEmail(user: currentUser);
+
+    });
+
 }
-
 
 
 Stream<AuthenticationState> _mapLoggedOutToState() async* {

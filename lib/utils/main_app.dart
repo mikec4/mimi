@@ -51,7 +51,8 @@ class HomeAuth extends StatelessWidget {
         if(state is InitialAuthenticationState){
           return SplashPage();
           }
-        else if (state is AuthenticatedWithEmail || state is AuthenticatedWithMobileNumber){
+        else if (state is AuthenticatedWithEmail){
+          
           return MainHomePage();
         }
         else if(state is Unauthenticated){

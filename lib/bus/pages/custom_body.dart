@@ -1,12 +1,9 @@
-import 'dart:async';
 
-import 'package:device_preview/device_preview.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mimi/bus/busProvider/bus_controller.dart';
+import 'package:mimi/bus/pages/custom_seats_shimmer.dart';
 import 'package:mimi/bus/pages/seats_counter.dart';
 
 import 'package:mimi/seat/bloc/seat_bloc.dart';
@@ -24,6 +21,7 @@ class CustomBody extends StatefulWidget {
   _CustomBodyState createState() => _CustomBodyState();
 }
 
+
 class _CustomBodyState extends State<CustomBody> {
 
   VoidCallback get openPanel => widget.openPanel;
@@ -39,6 +37,7 @@ class _CustomBodyState extends State<CustomBody> {
           );
         }
          
+       // if(state is LoadSeatState) return CustomSeatsShimmer();
          if(state is ErrorSeatState){
            return Container(
              alignment: Alignment.center,
@@ -71,6 +70,16 @@ class _CustomBodyState extends State<CustomBody> {
 
 
 } 
+
+
+class SeatsShimmer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      
+    );
+  }
+}
 
 
 

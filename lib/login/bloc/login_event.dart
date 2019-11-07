@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:mimi/login/loginEntity/user_entity.dart';
 
 @immutable
 abstract class LoginEvent extends Equatable {

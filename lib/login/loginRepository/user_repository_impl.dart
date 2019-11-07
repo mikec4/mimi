@@ -1,14 +1,27 @@
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:mimi/locator.dart';
+import 'package:mimi/failure/failure.dart';
 import 'package:mimi/login/loginRepository/user_repository.dart';
+import 'package:mimi/login/model/user_model.dart';
 
 class UserRepositoryImpl implements UserRepository{
   
-  final _firebaseAuth = FirebaseAuth.instance;
-  final _googleSignIn = locator<GoogleSignIn>();
-  final _facebookLogin = locator<FacebookLogin>();
+  final FirebaseAuth _firebaseAuth;
+  final GoogleSignIn _googleSignIn;
+  final FacebookLogin _facebookLogin;
+
+  
+  //final _firebaseAuth = FirebaseAuth.instance;
+  //final _googleSignIn = locator<GoogleSignIn>();
+  //final _facebookLogin = locator<FacebookLogin>();
+
+  UserRepositoryImpl({FirebaseAuth firebaseAuth,GoogleSignIn googleSignIn,FacebookLogin facebookLogin}):
+  _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
+  _googleSignIn = googleSignIn ?? GoogleSignIn(),
+  _facebookLogin = facebookLogin ?? FacebookLogin();
 
 
   @override
@@ -59,6 +72,82 @@ class UserRepositoryImpl implements UserRepository{
       _googleSignIn.signOut(),
       _facebookLogin.logOut()
     ]);
+  }
+
+  @override
+  Future<Either<Failure, UserModel>> loginInWithFacebook() async{
+    
+    try {
+
+      final result = await _facebookLogin.logInWithReadPermissions(['email',]);
+  
+      AuthCredential credential = FacebookAuthProvider.getCredential(accessToken:result.accessToken.token);
+      await _firebaseAuth.signInWithCredential(credential);
+      var firebaseUser = await _firebaseAuth.currentUser();
+      var userModel = UserModel.fromFirebase(firebaseUser);
+
+      return Right(userModel);
+
+    } on PlatformException catch (e) {
+
+      var failure = Failure(failure: e.message,code: e.code);
+      return Left(failure);
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserModel>> loginInWithGoogle() async{
+
+    try {
+      final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+
+      final GoogleSignInAuthentication googleAuth =await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.getCredential(accessToken: googleAuth.accessToken,idToken: googleAuth.idToken,);
+    
+      await _firebaseAuth.signInWithCredential(credential);
+
+      var firebaseUser = await _firebaseAuth.currentUser();
+
+      var userModel = UserModel.fromFirebase(firebaseUser);
+
+      return Right(userModel);
+
+    } on PlatformException catch (e) {
+
+      var failure = Failure(failure: e.message,code: e.code);
+      
+      return Left(failure);
+    }
+
+  }
+
+  @override
+  Future<Either<Failure, bool>> isLoggedIn() async{
+    
+    try {
+
+      final currentUser = await _firebaseAuth.currentUser();
+      var isLoggedIn =  currentUser != null;
+
+      return Right(isLoggedIn);
+      
+    } on PlatformException catch (e) {
+      
+      var failure = Failure(failure: e.message,code: e.code);
+      return Left(failure);
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserModel>> currentUser() async{
+    try {
+      var firebaseUser = await _firebaseAuth.currentUser();
+      var userModel = UserModel.fromFirebase(firebaseUser); 
+      return Right(userModel);
+    } on PlatformException catch (e) {
+      var failure = Failure(failure: e.message,code: e.code);
+      return Left(failure);
+    }
   }
    
 }

@@ -1,6 +1,7 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_skeleton/flutter_skeleton.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mimi/amenities/bloc/bloc.dart';
 import 'package:mimi/bus/bloc/bloc.dart';
@@ -20,6 +21,7 @@ import 'package:mimi/seat/bloc/bloc.dart';
 import 'package:mimi/seat/bloc/seat_bloc.dart';
 import 'package:mimi/utils/size_config.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../custom_bus_card.dart';
 
@@ -78,6 +80,7 @@ class SearchBody extends StatelessWidget {
     return  BlocListener<SearchBloc,SearchState>(
       listener: (context,state){
         if(state is BusesSearchState){
+
         Scaffold.of(context).showSnackBar(
           SnackBar(
             behavior: SnackBarBehavior.fixed,
@@ -100,13 +103,21 @@ class SearchBody extends StatelessWidget {
             child: BlocBuilder<SearchBloc,SearchState>(
               builder: (context,state){
                 if(state is EmptySearchState) return _emptyValues();
-                if(state is LoadSearchState) return _loader(context);
+                //if(state is LoadSearchState) return _loader(context);
+                if(state is LoadSearchState) return SkeletonSearch();
                 if(state is ErrorSearchState) return _errorWidget(state.message);
                 if(state is BusesSearchState) {
                  // return CustomCardList( buses: state.searchBusList.buses,);
-                 _buses = state.searchBusList.buses;
+                 if(state.searchBusList.buses.length != 0){
+                  _buses = state.searchBusList.buses;
                  
-                 return SearchPageFilter(buses: state.searchBusList.buses,);
+                  return SearchPageFilter(buses: state.searchBusList.buses,);
+
+                }else {
+                  return SkeletonSearch();
+                }
+
+                 
           }
         },
       ),
@@ -139,6 +150,50 @@ class SearchBody extends StatelessWidget {
   );
  }
 
+
+
+}
+
+
+class CustomShimmer extends StatelessWidget {
+  const CustomShimmer({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: ListView.builder(
+        itemCount: 3,
+       itemBuilder: (context,i){
+
+         return Shimmer.fromColors(
+           child: CustomBusCard(),
+           baseColor: Colors.grey[300],
+           highlightColor: Colors.white,
+           period: Duration(seconds: 10),
+         );
+       },
+      ),
+    );
+  }
+}
+
+class SkeletonSearch extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: CardListSkeleton(
+        length: 5,
+        style: SkeletonStyle(
+          backgroundColor: Colors.grey[300],
+          isAnimation: true,
+          isCircleAvatar: false,
+          isShowAvatar: false,
+          barCount: 2,
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+      ),
+    );
+  }
 }
 
 

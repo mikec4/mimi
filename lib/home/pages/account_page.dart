@@ -1,10 +1,18 @@
+
 import 'package:flutter/material.dart';
 
-class AccountPag extends StatelessWidget {
+class AccountPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Account Page'),),
+      appBar: AppBar(title: Text('Account'),),
+      body: Card(
+        child: Container(
+          height: 400.0,
+        ),
+      ),
     );
   }
+
 }
